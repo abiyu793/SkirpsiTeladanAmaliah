@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Minimalist Deep Navy Colors -->
+    <color name="primary_navy">#0D47A1</color>
+    <color name="primary_navy_dark">#002171</color>
+    <color name="secondary_light_blue">#5472D3</color>
+    
+    <!-- Backgrounds & Whitespace -->
+    <color name="background_light_grey">#F5F5F5</color>
+    <color name="surface_white">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    
+    <!-- Indicators -->
+    <color name="success_green">#4CAF50</color>
+</resources>

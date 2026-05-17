@@ -1,0 +1,5 @@
+com.teladan.amaliah.test.app-core-1.7.0-0 C:\Users\user\.gradle\caches\transforms-4\49826c02767b29542a7b4191e62fa42d\transformed\core-1.7.0\res
+com.teladan.amaliah.test.app-androidTest-1 D:\skripsi\amaliah\app\build\generated\res\resValues\androidTest\debug
+com.teladan.amaliah.test.app-mergeDebugAndroidTestResources-2 D:\skripsi\amaliah\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.teladan.amaliah.test.app-mergeDebugAndroidTestResources-3 D:\skripsi\amaliah\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.teladan.amaliah.test.app-debugAndroidTest-4 D:\skripsi\amaliah\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

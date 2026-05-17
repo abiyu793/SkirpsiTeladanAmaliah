@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/nav_siswa"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Data Siswa" />
+    <item
+        android:id="@+id/nav_ranking"
+        android:icon="@android:drawable/star_on"
+        android:title="Ranking" />
+</menu>

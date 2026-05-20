@@ -1,47 +1,31 @@
 [
     {
-        "merged": "com.teladan.amaliah.app-mergeDebugResources-48:/layout/activity_setting_kriteria.xml",
-        "source": "com.teladan.amaliah.app-main-51:/layout/activity_setting_kriteria.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_setting_kriteria.xml",
-        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_setting_kriteria.xml"
-    },
-    {
-        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_add_siswa.xml",
-        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_add_siswa.xml"
-    },
-    {
-        "merged": "com.teladan.amaliah.app-mergeDebugResources-48:/layout/fragment_dashboard.xml",
-        "source": "com.teladan.amaliah.app-main-51:/layout/fragment_dashboard.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\fragment_siswa.xml",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\fragment_siswa.xml"
-    },
-    {
-        "merged": "com.teladan.amaliah.app-mergeDebugResources-48:/layout/activity_add_siswa.xml",
-        "source": "com.teladan.amaliah.app-main-51:/layout/activity_add_siswa.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\item_siswa.xml",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\item_siswa.xml"
     },
     {
-        "merged": "com.teladan.amaliah.app-mergeDebugResources-48:/layout/fragment_siswa.xml",
-        "source": "com.teladan.amaliah.app-main-51:/layout/fragment_siswa.xml"
-    },
-    {
         "merged": "com.teladan.amaliah.app-mergeDebugResources-48:/layout/fragment_ranking.xml",
         "source": "com.teladan.amaliah.app-main-51:/layout/fragment_ranking.xml"
     },
     {
-        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\item_ranking.xml",
-        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\item_ranking.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_add_siswa.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_add_siswa.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_setting_kriteria.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_setting_kriteria.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_main.xml",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\item_ranking.xml",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\item_ranking.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-mergeDebugResources-48:\\layout\\activity_login.xml",

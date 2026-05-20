@@ -1,3 +1,0 @@
-com.teladan.amaliah.test
-style WhiteBackgroundDialogTheme
-style WhiteBackgroundTheme

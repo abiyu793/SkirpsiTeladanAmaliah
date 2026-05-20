@@ -12,10 +12,6 @@
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.teladan.amaliah.app-debug-49:/layout_fragment_siswa.xml.flat",
-        "source": "com.teladan.amaliah.app-main-51:/layout/fragment_siswa.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\mipmap-hdpi\\ic_launcher.png"
     },
@@ -34,10 +30,6 @@
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\mipmap-xxhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "com.teladan.amaliah.app-debug-49:/layout_fragment_dashboard.xml.flat",
-        "source": "com.teladan.amaliah.app-main-51:/layout/fragment_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -60,12 +52,16 @@
         "source": "com.teladan.amaliah.app-main-51:/layout/fragment_ranking.xml"
     },
     {
-        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_dashboard.xml.flat",
-        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\fragment_dashboard.xml"
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\xml\\file_paths.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\drawable_bg_header_gradient.xml.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\drawable\\bg_header_gradient.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_dashboard.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\fragment_dashboard.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_item_ranking.xml.flat",
@@ -96,10 +92,6 @@
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.teladan.amaliah.app-debug-49:/layout_activity_setting_kriteria.xml.flat",
-        "source": "com.teladan.amaliah.app-main-51:/layout/activity_setting_kriteria.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\xml_data_extraction_rules.xml.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\xml\\data_extraction_rules.xml"
     },
@@ -118,10 +110,6 @@
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "com.teladan.amaliah.app-debug-49:/layout_activity_add_siswa.xml.flat",
-        "source": "com.teladan.amaliah.app-main-51:/layout/activity_add_siswa.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_siswa.xml.flat",

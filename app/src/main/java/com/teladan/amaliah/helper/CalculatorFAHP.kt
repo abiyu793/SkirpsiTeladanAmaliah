@@ -243,25 +243,22 @@ class CalculatorFAHP(
     fun hadir(hadir: Double, terlambat: Double): Double = (hadir + (100 - terlambat)) / 2.0
     fun disiplin(pelanggaran: Double, sikap: Double): Double = ((100 - pelanggaran) + sikap) / 2.0
 
-    // LANGKAH 10 & 11: Perkalian, Penjumlahan, dan Defuzzifikasi - DIPERBAIKI (PERBAIKAN 2 & 3)
     fun calculateFinalScore(
         nilaiAkademik: Double,
         nilaiPraktik: Double,
         nilaiHadir: Double,
         nilaiDisiplin: Double
     ): Double {
-        // PERBAIKAN 3: Gunakan bobot tetap untuk validasi skripsi
-        // Untuk menggunakan bobot dinamis, ganti fixedWeights dengan getNormalizedWeights()
-        val weights = fixedWeights  // ← Pakai bobot tetap
-        // val weights = getNormalizedWeights()  // ← Pakai bobot dinamis (uncomment jika ingin)
+        // Gunakan bobot tetap untuk validasi skripsi
+        val weights = fixedWeights
 
-        // LANGKAH 9: Fuzzifikasi nilai siswa
+        // Fuzzifikasi nilai siswa
         val fuzzyAkademik = fuzzifyScore(nilaiAkademik)
         val fuzzyPraktik = fuzzifyScore(nilaiPraktik)
         val fuzzyHadir = fuzzifyScore(nilaiHadir)
         val fuzzyDisiplin = fuzzifyScore(nilaiDisiplin)
 
-        // LANGKAH 10: Perkalian fuzzy dengan bobot
+        // Perkalian fuzzy dengan bobot
         val scoreAkademik = fuzzyAkademik * weights[0]
         val scorePraktik = fuzzyPraktik * weights[1]
         val scoreHadir = fuzzyHadir * weights[2]
@@ -270,15 +267,15 @@ class CalculatorFAHP(
         // Penjumlahan
         val finalFuzzy = scoreAkademik + scorePraktik + scoreHadir + scoreDisiplin
 
-        // LANGKAH 11: Defuzzifikasi
-        var finalScore = (finalFuzzy.l + finalFuzzy.m + finalFuzzy.u) / 3.0
+        // Defuzzifikasi
+        val finalScore = (finalFuzzy.l + finalFuzzy.m + finalFuzzy.u) / 3.0
 
-        if (finalScore.isNaN()) {
+        if (finalScore.isNaN() || finalScore.isInfinite()) {
             return 0.0
         }
-        
-        // PERBAIKAN 2: Bulatkan ke 2 desimal agar persis seperti Excel
-        return String.format("%.2f", finalScore).toDouble()
+
+        // PERBAIKAN 2: Bulatkan ke 2 desimal (sama seperti Excel, aman untuk format Indonesia)
+        return String.format("%.2f", finalScore).replace(',', '.').toDouble()
     }
 
     fun getWeights(): List<Double> = getNormalizedWeights()

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.google.android.material.button.MaterialButton;
 import com.teladan.amaliah.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -20,6 +21,9 @@ import java.lang.String;
 public final class FragmentRankingBinding implements ViewBinding {
   @NonNull
   private final LinearLayout rootView;
+
+  @NonNull
+  public final MaterialButton btnExportPDF;
 
   @NonNull
   public final RecyclerView rvRanking;
@@ -33,10 +37,12 @@ public final class FragmentRankingBinding implements ViewBinding {
   @NonNull
   public final TextView tvEmptyState;
 
-  private FragmentRankingBinding(@NonNull LinearLayout rootView, @NonNull RecyclerView rvRanking,
+  private FragmentRankingBinding(@NonNull LinearLayout rootView,
+      @NonNull MaterialButton btnExportPDF, @NonNull RecyclerView rvRanking,
       @NonNull Spinner spinnerFilterJurusan, @NonNull Spinner spinnerFilterKelas,
       @NonNull TextView tvEmptyState) {
     this.rootView = rootView;
+    this.btnExportPDF = btnExportPDF;
     this.rvRanking = rvRanking;
     this.spinnerFilterJurusan = spinnerFilterJurusan;
     this.spinnerFilterKelas = spinnerFilterKelas;
@@ -70,6 +76,12 @@ public final class FragmentRankingBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btnExportPDF;
+      MaterialButton btnExportPDF = ViewBindings.findChildViewById(rootView, id);
+      if (btnExportPDF == null) {
+        break missingId;
+      }
+
       id = R.id.rvRanking;
       RecyclerView rvRanking = ViewBindings.findChildViewById(rootView, id);
       if (rvRanking == null) {
@@ -94,8 +106,8 @@ public final class FragmentRankingBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentRankingBinding((LinearLayout) rootView, rvRanking, spinnerFilterJurusan,
-          spinnerFilterKelas, tvEmptyState);
+      return new FragmentRankingBinding((LinearLayout) rootView, btnExportPDF, rvRanking,
+          spinnerFilterJurusan, spinnerFilterKelas, tvEmptyState);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -87,12 +87,12 @@
     <!-- Tombol Pengaturan Kriteria -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSettingKriteria"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="86dp"
         android:layout_marginTop="16dp"
         android:text="Pengaturan Bobot Kriteria"
         android:textSize="14sp"
-        app:icon="@android:drawable/ic_menu_edit"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+        app:icon="@android:drawable/ic_menu_edit" />
 
 </LinearLayout>

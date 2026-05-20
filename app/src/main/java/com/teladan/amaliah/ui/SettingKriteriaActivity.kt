@@ -58,11 +58,11 @@ class SettingKriteriaActivity : AppCompatActivity() {
             .setTitle("Reset Matriks")
             .setMessage("Apakah Anda yakin ingin mengembalikan semua nilai matriks ke default?")
             .setPositiveButton("Ya") { _, _ ->
-                binding.etPA.setText("5.0")
-                binding.etDA.setText("3.0")
-                binding.etPH.setText("7.0")
-                binding.etAH.setText("1.0")
-                binding.etPD.setText("1.0")
+                binding.etPA.setText("3.0")
+                binding.etDA.setText("2.0")
+                binding.etPH.setText("5.0")
+                binding.etAH.setText("2.0")
+                binding.etPD.setText("2.0")
                 binding.etHD.setText("1.0")
                 Toast.makeText(this, "Nilai matriks telah direset ke default", Toast.LENGTH_SHORT).show()
             }

@@ -2,11 +2,19 @@ R_DEF: Internal format may change without notice
 local
 color background_light_grey
 color black
+color bottom_nav_color
+color bottom_nav_selected
+color bottom_nav_unselected
 color primary_navy
 color primary_navy_dark
+color purple_200
+color purple_500
+color purple_700
 color secondary_light_blue
 color success_green
 color surface_white
+color teal_200
+color teal_700
 color text_primary
 color text_secondary
 color white
@@ -15,12 +23,9 @@ drawable bg_circle_rank
 drawable bg_header_gradient
 drawable ic_launcher_background
 drawable ic_launcher_foreground
-id FirstFragment
-id SecondFragment
-id action_FirstFragment_to_SecondFragment
-id action_SecondFragment_to_FirstFragment
 id bottomNavigationView
 id btnDelete
+id btnExportPDF
 id btnLogin
 id btnLogout
 id btnReset
@@ -98,12 +103,7 @@ string lorem_ipsum
 string next
 string previous
 string second_fragment_label
-style Base.Theme.TeladanAmaliah
-style ShapeAppearance.TeladanAmaliah.LargeComponent
-style ShapeAppearance.TeladanAmaliah.MediumComponent
-style ShapeAppearance.TeladanAmaliah.SmallComponent
 style Theme.TeladanAmaliah
-style Widget.TeladanAmaliah.Button
-style Widget.TeladanAmaliah.CardView
 xml backup_rules
 xml data_extraction_rules
+xml file_paths

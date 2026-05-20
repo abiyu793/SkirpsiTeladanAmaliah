@@ -8,6 +8,12 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="35" />
 
+    <!-- Izin untuk menyimpan file (diperlukan untuk export PDF di Android 10 ke bawah) -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <permission
         android:name="com.teladan.amaliah.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
@@ -23,22 +29,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.TeladanAmaliah" >
-        <activity
-            android:name="com.teladan.amaliah.ui.SettingKriteriaActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.teladan.amaliah.ui.siswa.AddSiswaActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.teladan.amaliah.ui.adapter.SiswaAdapter"
-            android:exported="false" />
-        <activity
-            android:name="com.teladan.amaliah.ui.MainActivity"
-            android:exported="false" />
+
+        <!-- Login Activity (LAUNCHER) -->
         <activity
             android:name="com.teladan.amaliah.ui.login.LoginActivity"
             android:exported="true" >
@@ -48,6 +45,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Main Activity (Dashboard) -->
+        <activity
+            android:name="com.teladan.amaliah.ui.MainActivity"
+            android:exported="false" />
+
+        <!-- Tambah/Edit Siswa Activity -->
+        <activity
+            android:name="com.teladan.amaliah.ui.siswa.AddSiswaActivity"
+            android:exported="false" />
+
+        <!-- Pengaturan Kriteria Activity -->
+        <activity
+            android:name="com.teladan.amaliah.ui.SettingKriteriaActivity"
+            android:exported="false" />
+
+        <!-- FileProvider untuk berbagi file PDF/CSV -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.teladan.amaliah.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <service
             android:name="androidx.room.MultiInstanceInvalidationService"

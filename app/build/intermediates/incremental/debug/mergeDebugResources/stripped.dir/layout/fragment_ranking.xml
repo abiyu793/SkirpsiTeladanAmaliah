@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,7 +16,7 @@
         android:gravity="center"
         android:textColor="@color/black" />
 
-    <!-- Container Filter -->
+    <!-- Filter Spinner -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,30 +36,47 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1" />
+
     </LinearLayout>
 
-    <FrameLayout
+    <!-- Tombol Export PDF -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="8dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRanking"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnExportPDF"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="4dp"
-            android:paddingBottom="56dp"
-            android:clipToPadding="false" />
+            android:layout_height="45dp"
+            android:text="EKSPORT TO PDF"
+            android:textSize="14sp"
+            app:icon="@android:drawable/ic_menu_edit"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-        <!-- TAMPILAN JIKA DATA KOSONG -->
-        <TextView
-            android:id="@+id/tvEmptyState"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Belum ada data siswa.\nSilakan input data terlebih dahulu."
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:visibility="gone" />
+    </LinearLayout>
 
-    </FrameLayout>
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRanking"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
+        android:clipToPadding="false" />
+
+    <!-- Empty State -->
+    <TextView
+        android:id="@+id/tvEmptyState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Belum ada data siswa.\nSilakan input data terlebih dahulu."
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
 </LinearLayout>

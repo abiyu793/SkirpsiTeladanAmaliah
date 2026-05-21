@@ -4,10 +4,10 @@ package com.teladan.amaliah.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.github.mikephil.charting.charts.PieChart;
@@ -19,10 +19,16 @@ import java.lang.String;
 
 public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
-  private final LinearLayout rootView;
+  private final NestedScrollView rootView;
 
   @NonNull
   public final MaterialButton btnLogout;
+
+  @NonNull
+  public final MaterialButton btnSettingKriteria;
+
+  @NonNull
+  public final MaterialButton btnTheme;
 
   @NonNull
   public final PieChart pieChart;
@@ -36,11 +42,14 @@ public final class FragmentDashboardBinding implements ViewBinding {
   @NonNull
   public final TextView tvWelcome;
 
-  private FragmentDashboardBinding(@NonNull LinearLayout rootView,
-      @NonNull MaterialButton btnLogout, @NonNull PieChart pieChart, @NonNull TextView tvAdminName,
+  private FragmentDashboardBinding(@NonNull NestedScrollView rootView,
+      @NonNull MaterialButton btnLogout, @NonNull MaterialButton btnSettingKriteria,
+      @NonNull MaterialButton btnTheme, @NonNull PieChart pieChart, @NonNull TextView tvAdminName,
       @NonNull TextView tvTotalSiswa, @NonNull TextView tvWelcome) {
     this.rootView = rootView;
     this.btnLogout = btnLogout;
+    this.btnSettingKriteria = btnSettingKriteria;
+    this.btnTheme = btnTheme;
     this.pieChart = pieChart;
     this.tvAdminName = tvAdminName;
     this.tvTotalSiswa = tvTotalSiswa;
@@ -49,7 +58,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public LinearLayout getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -80,6 +89,18 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnSettingKriteria;
+      MaterialButton btnSettingKriteria = ViewBindings.findChildViewById(rootView, id);
+      if (btnSettingKriteria == null) {
+        break missingId;
+      }
+
+      id = R.id.btnTheme;
+      MaterialButton btnTheme = ViewBindings.findChildViewById(rootView, id);
+      if (btnTheme == null) {
+        break missingId;
+      }
+
       id = R.id.pieChart;
       PieChart pieChart = ViewBindings.findChildViewById(rootView, id);
       if (pieChart == null) {
@@ -104,8 +125,8 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDashboardBinding((LinearLayout) rootView, btnLogout, pieChart, tvAdminName,
-          tvTotalSiswa, tvWelcome);
+      return new FragmentDashboardBinding((NestedScrollView) rootView, btnLogout,
+          btnSettingKriteria, btnTheme, pieChart, tvAdminName, tvTotalSiswa, tvWelcome);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

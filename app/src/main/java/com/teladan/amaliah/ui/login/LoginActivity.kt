@@ -57,7 +57,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun performLogin(username: String, password: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val admin = database.adminDao().loginAdmin(username, password)
+            var admin = database.adminDao().loginAdmin(username, password)
+
+            // Fallback recovery jika database terhapus karena migrasi destruktif
+            if (admin == null && username == "admin" && password == "123") {
+                val defaultAdmin = com.teladan.amaliah.data.local.entity.Admin(
+                    username = "admin",
+                    password = "123",
+                    nama_lengkap = "Administrator"
+                )
+                database.adminDao().insertAdmin(defaultAdmin)
+                admin = defaultAdmin
+            }
 
             withContext(Dispatchers.Main) {
                 if (admin != null) {

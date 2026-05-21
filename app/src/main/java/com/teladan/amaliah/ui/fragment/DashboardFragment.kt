@@ -56,9 +56,24 @@ class DashboardFragment : Fragment() {
             binding.tvTotalSiswa.text = total.toString()
         }
 
-        // ========== TOMBOL LOGOUT ==========
-        // Pastikan btnLogout ada di layout
+        // ========== TOMBOL LOGOUT & TEMA ==========
+        // Set initial icon
+        val currentNightMode = resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK
+        if (currentNightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+            binding.btnTheme.setIconResource(com.teladan.amaliah.R.drawable.ic_light_mode)
+        } else {
+            binding.btnTheme.setIconResource(com.teladan.amaliah.R.drawable.ic_dark_mode)
+        }
+
         try {
+            binding.btnTheme.setOnClickListener {
+                if (currentNightMode == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+                    androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO)
+                } else {
+                    androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode(androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES)
+                }
+            }
+
             binding.btnLogout.setOnClickListener {
                 showLogoutDialog()
             }
@@ -68,6 +83,23 @@ class DashboardFragment : Fragment() {
 
         setupPieChart()
         observeSiswaDataForChart()
+
+        // Tombol Setting Kriteria
+        try {
+            binding.btnSettingKriteria.setOnClickListener {
+                val bottomSheet = SettingKriteriaBottomSheet()
+                bottomSheet.onSavedListener = {
+                    database.siswaDao().getAllSiswaLive().value?.let { siswaList ->
+                        if (siswaList.isNotEmpty()) {
+                            calculateAndRenderChart(siswaList)
+                        }
+                    }
+                }
+                bottomSheet.show(parentFragmentManager, "SettingKriteriaBottomSheet")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     private fun showLogoutDialog() {
@@ -99,13 +131,13 @@ class DashboardFragment : Fragment() {
             setUsePercentValues(true)
             description.isEnabled = false
             isDrawHoleEnabled = true
-            setHoleColor(Color.WHITE)
+            setHoleColor(Color.TRANSPARENT)
             transparentCircleRadius = 55f
             holeRadius = 40f
             setDrawCenterText(true)
             centerText = "Kelayakan"
             setCenterTextSize(14f)
-            setCenterTextColor(Color.parseColor("#333333"))
+            setCenterTextColor(Color.GRAY)
             setEntryLabelColor(Color.WHITE)
             setEntryLabelTextSize(11f)
             
@@ -115,6 +147,7 @@ class DashboardFragment : Fragment() {
                 orientation = com.github.mikephil.charting.components.Legend.LegendOrientation.HORIZONTAL
                 setDrawInside(false)
                 textSize = 12f
+                textColor = Color.GRAY
             }
         }
     }

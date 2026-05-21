@@ -43,7 +43,7 @@ class CalculatorFAHP(
     }
 
     private var cachedWeights: List<Double>? = null
-    
+
     // =======================================================
     // BOBOT TETAP UNTUK TESTING (PERBAIKAN 3)
     // Aktifkan dengan mengganti comment di calculateFinalScore
@@ -155,7 +155,7 @@ class CalculatorFAHP(
                             val numerator = m2.l - m1.u
                             val denominator = (m2.m - m2.u) - (m1.m - m1.l)
                             // PERBAIKAN 4: Gunakan epsilon untuk menghindari floating point error
-                            if (abs(denominator) < 0.000001) 0.0 
+                            if (abs(denominator) < 0.000001) 0.0
                             else max(0.0, min(1.0, numerator / denominator))
                         }
                     }
@@ -226,7 +226,7 @@ class CalculatorFAHP(
     // =======================================================
     // FASE EVALUASI SISWA (LANGKAH 8 HINGGA 11)
     // =======================================================
-    
+
     // LANGKAH 9: Fuzzifikasi nilai siswa - DIPERBAIKI (PERBAIKAN 1)
     // Margin ±1 untuk hasil lebih dekat dengan Excel
     private fun fuzzifyScore(score: Double): TFN {

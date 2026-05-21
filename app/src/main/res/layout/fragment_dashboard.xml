@@ -84,15 +84,35 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Tombol Pengaturan Kriteria -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnSettingKriteria"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    <!-- Card Statistik Kelayakan -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Pengaturan Bobot Kriteria"
-        android:textSize="14sp"
-        app:icon="@android:drawable/ic_menu_edit" />
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Statistik Kelayakan"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginBottom="8dp"/>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

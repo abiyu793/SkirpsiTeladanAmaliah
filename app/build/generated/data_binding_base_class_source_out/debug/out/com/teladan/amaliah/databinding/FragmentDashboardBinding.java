@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
+import com.github.mikephil.charting.charts.PieChart;
 import com.google.android.material.button.MaterialButton;
 import com.teladan.amaliah.R;
 import java.lang.NullPointerException;
@@ -24,7 +25,7 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final MaterialButton btnLogout;
 
   @NonNull
-  public final MaterialButton btnSettingKriteria;
+  public final PieChart pieChart;
 
   @NonNull
   public final TextView tvAdminName;
@@ -36,11 +37,11 @@ public final class FragmentDashboardBinding implements ViewBinding {
   public final TextView tvWelcome;
 
   private FragmentDashboardBinding(@NonNull LinearLayout rootView,
-      @NonNull MaterialButton btnLogout, @NonNull MaterialButton btnSettingKriteria,
-      @NonNull TextView tvAdminName, @NonNull TextView tvTotalSiswa, @NonNull TextView tvWelcome) {
+      @NonNull MaterialButton btnLogout, @NonNull PieChart pieChart, @NonNull TextView tvAdminName,
+      @NonNull TextView tvTotalSiswa, @NonNull TextView tvWelcome) {
     this.rootView = rootView;
     this.btnLogout = btnLogout;
-    this.btnSettingKriteria = btnSettingKriteria;
+    this.pieChart = pieChart;
     this.tvAdminName = tvAdminName;
     this.tvTotalSiswa = tvTotalSiswa;
     this.tvWelcome = tvWelcome;
@@ -79,9 +80,9 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnSettingKriteria;
-      MaterialButton btnSettingKriteria = ViewBindings.findChildViewById(rootView, id);
-      if (btnSettingKriteria == null) {
+      id = R.id.pieChart;
+      PieChart pieChart = ViewBindings.findChildViewById(rootView, id);
+      if (pieChart == null) {
         break missingId;
       }
 
@@ -103,8 +104,8 @@ public final class FragmentDashboardBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentDashboardBinding((LinearLayout) rootView, btnLogout, btnSettingKriteria,
-          tvAdminName, tvTotalSiswa, tvWelcome);
+      return new FragmentDashboardBinding((LinearLayout) rootView, btnLogout, pieChart, tvAdminName,
+          tvTotalSiswa, tvWelcome);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -39,10 +39,6 @@
             android:name=".ui.siswa.AddSiswaActivity"
             android:exported="false" />
 
-        <!-- Pengaturan Kriteria Activity -->
-        <activity
-            android:name=".ui.SettingKriteriaActivity"
-            android:exported="false" />
 
         <!-- FileProvider untuk berbagi file PDF/CSV -->
         <provider

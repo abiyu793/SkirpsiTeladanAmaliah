@@ -15,6 +15,7 @@ color success_green
 color surface_white
 color teal_200
 color teal_700
+color teal_primary
 color text_primary
 color text_secondary
 color white
@@ -28,19 +29,11 @@ id btnDelete
 id btnExportPDF
 id btnLogin
 id btnLogout
-id btnReset
-id btnSettingKriteria
 id btnSimpan
-id etAH
-id etDA
-id etHD
 id etHadir
 id etLab
 id etNama
 id etNis
-id etPA
-id etPD
-id etPH
 id etPassword
 id etPelanggaran
 id etPkl
@@ -54,10 +47,12 @@ id etUsername
 id fabAddSiswa
 id flRankBadge
 id fragmentContainer
+id nav_about
 id nav_dashboard
 id nav_graph
 id nav_ranking
 id nav_siswa
+id pieChart
 id rvRanking
 id rvSiswa
 id spinnerFilterJurusan
@@ -72,7 +67,6 @@ id tilUsername
 id tvAdminName
 id tvEmptyData
 id tvEmptyState
-id tvInfoCR
 id tvJurusan
 id tvNama
 id tvNamaSiswa
@@ -86,7 +80,7 @@ id tvWelcome
 layout activity_add_siswa
 layout activity_login
 layout activity_main
-layout activity_setting_kriteria
+layout fragment_about
 layout fragment_dashboard
 layout fragment_ranking
 layout fragment_siswa

@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_activity_setting_kriteria.xml.flat",
-        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\activity_setting_kriteria.xml"
-    },
-    {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\xml_backup_rules.xml.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\xml\\backup_rules.xml"
     },
@@ -18,6 +14,10 @@
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_ranking.xml.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\fragment_ranking.xml"
+    },
+    {
+        "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_about.xml.flat",
+        "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\layout\\fragment_about.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\drawable_ic_launcher_background.xml.flat",
@@ -72,6 +72,10 @@
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\drawable\\ic_launcher_foreground.xml"
     },
     {
+        "merged": "com.teladan.amaliah.app-debug-49:/layout_fragment_about.xml.flat",
+        "source": "com.teladan.amaliah.app-main-51:/layout/fragment_about.xml"
+    },
+    {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\menu_bottom_nav_menu.xml.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\menu\\bottom_nav_menu.xml"
     },
@@ -106,10 +110,6 @@
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-main-51:\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "com.teladan.amaliah.app-debug-49:/layout_activity_add_siswa.xml.flat",
-        "source": "com.teladan.amaliah.app-main-51:/layout/activity_add_siswa.xml"
     },
     {
         "merged": "C:\\Users\\user\\.gradle\\daemon\\8.7\\com.teladan.amaliah.app-debug-49:\\layout_fragment_siswa.xml.flat",

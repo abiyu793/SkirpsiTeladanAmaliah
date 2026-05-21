@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(RankingFragment())
                     true
                 }
+                R.id.nav_about -> {
+                    replaceFragment(com.teladan.amaliah.ui.fragment.AboutFragment())
+                    true
+                }
                 else -> false
             }
         }

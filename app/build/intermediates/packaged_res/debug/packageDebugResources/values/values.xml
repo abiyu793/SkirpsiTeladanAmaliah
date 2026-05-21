@@ -15,6 +15,7 @@
     <color name="surface_white">#FFFFFF</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="teal_primary">#009688</color>
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
     <color name="white">#FFFFFFFF</color>

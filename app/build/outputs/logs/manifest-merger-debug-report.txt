@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:48:9-56:20
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:44:9-52:20
 	android:grantUriPermissions
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:52:13-47
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:48:13-47
 	android:authorities
 		INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:50:13-64
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:46:13-64
 	android:exported
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:51:13-37
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:47:13-37
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:49:13-62
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:45:13-62
 manifest
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-60:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-60:12
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
 MERGED from [androidx.databinding:viewbinding:8.6.0] C:\Users\user\.gradle\caches\transforms-4\27fde9014bb5e9d2b112dee8f6a0fa39\transformed\viewbinding-8.6.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] C:\Users\user\.gradle\caches\transforms-4\77fff46c019c7cc4aa93a7829f87a4b6\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.8] C:\Users\user\.gradle\caches\transforms-4\2221d39888ff0445262caddabae229ee\transformed\navigation-common-release\AndroidManifest.xml:17:1-22:12
@@ -67,6 +67,7 @@ MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\user\.gradle\caches\transfor
 MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\user\.gradle\caches\transforms-4\fbf2b91d8382e06b606332ad61bf3698\transformed\annotation-experimental-1.4.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\transforms-4\cdad35b213d8ffbc14b6faa934b83ad8\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\user\.gradle\caches\transforms-4\f84ba67e9e5ed24f9910dbb720f2a2a0\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\user\.gradle\caches\transforms-4\b1789295335e767061cbd345f49c964b\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:2:1-20:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\transforms-4\e1455b39132ccb118b5e968ab4f1b11a\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\user\.gradle\caches\transforms-4\e23a710da4e9a941b64c267bc4586d77\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\user\.gradle\caches\transforms-4\1a8b6d626ba887c9a55bbd15114b9d13\transformed\profileinstaller-1.4.0\AndroidManifest.xml:17:1-55:12
@@ -98,8 +99,8 @@ ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:8:22-77
 application
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-58:19
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-58:19
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-54:19
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-54:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\user\.gradle\caches\transforms-4\1c95f8e67e3de5236b7c0d0569dda9c0\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\user\.gradle\caches\transforms-4\1c95f8e67e3de5236b7c0d0569dda9c0\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\user\.gradle\caches\transforms-4\beb42ec5bccf20a7907995aaf2e9ef18\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
@@ -172,18 +173,12 @@ ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:38:9-40:40
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:40:13-37
 	android:name
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:39:13-54
-activity#com.teladan.amaliah.ui.SettingKriteriaActivity
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:43:9-45:40
-	android:exported
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:45:13-37
-	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:44:13-55
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:53:13-55:54
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:49:13-51:54
 	android:resource
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:55:17-51
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:51:17-51
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:54:17-67
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:50:17-67
 uses-sdk
 INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml
@@ -292,6 +287,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\us
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\user\.gradle\caches\transforms-4\cdad35b213d8ffbc14b6faa934b83ad8\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\user\.gradle\caches\transforms-4\f84ba67e9e5ed24f9910dbb720f2a2a0\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\user\.gradle\caches\transforms-4\f84ba67e9e5ed24f9910dbb720f2a2a0\transformed\core-viewtree-1.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\user\.gradle\caches\transforms-4\b1789295335e767061cbd345f49c964b\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MPAndroidChart:v3.1.0] C:\Users\user\.gradle\caches\transforms-4\b1789295335e767061cbd345f49c964b\transformed\MPAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\transforms-4\e1455b39132ccb118b5e968ab4f1b11a\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\user\.gradle\caches\transforms-4\e1455b39132ccb118b5e968ab4f1b11a\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\user\.gradle\caches\transforms-4\e23a710da4e9a941b64c267bc4586d77\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44

@@ -56,11 +56,6 @@
             android:name="com.teladan.amaliah.ui.siswa.AddSiswaActivity"
             android:exported="false" />
 
-        <!-- Pengaturan Kriteria Activity -->
-        <activity
-            android:name="com.teladan.amaliah.ui.SettingKriteriaActivity"
-            android:exported="false" />
-
         <!-- FileProvider untuk berbagi file PDF/CSV -->
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -53,7 +53,7 @@
             android:layout_height="45dp"
             android:text="EKSPORT TO PDF"
             android:textSize="14sp"
-            app:icon="@android:drawable/ic_menu_edit"
+            app:icon="@drawable/ic_pdf"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
     </LinearLayout>

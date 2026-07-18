@@ -46,7 +46,7 @@ public final class SiswaDao_Impl implements SiswaDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `siswa_table` (`id`,`nis`,`nama`,`jurusan`,`tingkat_kelas`,`tahun_ajaran`,`nilai_rapor`,`nilai_teori`,`nilai_lab`,`nilai_pkl`,`persentase_hadir`,`jam_terlambat`,`poin_pelanggaran`,`skor_sikap`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `siswa_table` (`id`,`nis`,`nama`,`jurusan`,`tingkat_kelas`,`tahun_ajaran`,`nilai_rapor`,`nilai_teori`,`nilai_lab`,`nilai_pkl`,`persentase_hadir`,`jam_terlambat`,`poin_pelanggaran`,`skor_sikap`,`skor_akhir`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -86,13 +86,14 @@ public final class SiswaDao_Impl implements SiswaDao {
         statement.bindDouble(12, entity.getJam_terlambat());
         statement.bindDouble(13, entity.getPoin_pelanggaran());
         statement.bindDouble(14, entity.getSkor_sikap());
+        statement.bindDouble(15, entity.getSkor_akhir());
       }
     };
     this.__updateAdapterOfSiswaEntity = new EntityDeletionOrUpdateAdapter<SiswaEntity>(__db) {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `siswa_table` SET `id` = ?,`nis` = ?,`nama` = ?,`jurusan` = ?,`tingkat_kelas` = ?,`tahun_ajaran` = ?,`nilai_rapor` = ?,`nilai_teori` = ?,`nilai_lab` = ?,`nilai_pkl` = ?,`persentase_hadir` = ?,`jam_terlambat` = ?,`poin_pelanggaran` = ?,`skor_sikap` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `siswa_table` SET `id` = ?,`nis` = ?,`nama` = ?,`jurusan` = ?,`tingkat_kelas` = ?,`tahun_ajaran` = ?,`nilai_rapor` = ?,`nilai_teori` = ?,`nilai_lab` = ?,`nilai_pkl` = ?,`persentase_hadir` = ?,`jam_terlambat` = ?,`poin_pelanggaran` = ?,`skor_sikap` = ?,`skor_akhir` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -132,7 +133,8 @@ public final class SiswaDao_Impl implements SiswaDao {
         statement.bindDouble(12, entity.getJam_terlambat());
         statement.bindDouble(13, entity.getPoin_pelanggaran());
         statement.bindDouble(14, entity.getSkor_sikap());
-        statement.bindLong(15, entity.getId());
+        statement.bindDouble(15, entity.getSkor_akhir());
+        statement.bindLong(16, entity.getId());
       }
     };
     this.__preparedStmtOfDeleteSiswa = new SharedSQLiteStatement(__db) {
@@ -172,6 +174,25 @@ public final class SiswaDao_Impl implements SiswaDao {
         __db.beginTransaction();
         try {
           __updateAdapterOfSiswaEntity.handle(siswa);
+          __db.setTransactionSuccessful();
+          return Unit.INSTANCE;
+        } finally {
+          __db.endTransaction();
+        }
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object updateSiswaMassal(final List<SiswaEntity> siswaList,
+      final Continuation<? super Unit> $completion) {
+    return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
+      @Override
+      @NonNull
+      public Unit call() throws Exception {
+        __db.beginTransaction();
+        try {
+          __updateAdapterOfSiswaEntity.handleMultiple(siswaList);
           __db.setTransactionSuccessful();
           return Unit.INSTANCE;
         } finally {
@@ -231,6 +252,7 @@ public final class SiswaDao_Impl implements SiswaDao {
           final int _cursorIndexOfJamTerlambat = CursorUtil.getColumnIndexOrThrow(_cursor, "jam_terlambat");
           final int _cursorIndexOfPoinPelanggaran = CursorUtil.getColumnIndexOrThrow(_cursor, "poin_pelanggaran");
           final int _cursorIndexOfSkorSikap = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_sikap");
+          final int _cursorIndexOfSkorAkhir = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_akhir");
           final List<SiswaEntity> _result = new ArrayList<SiswaEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final SiswaEntity _item;
@@ -282,7 +304,9 @@ public final class SiswaDao_Impl implements SiswaDao {
             _tmpPoin_pelanggaran = _cursor.getDouble(_cursorIndexOfPoinPelanggaran);
             final double _tmpSkor_sikap;
             _tmpSkor_sikap = _cursor.getDouble(_cursorIndexOfSkorSikap);
-            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap);
+            final double _tmpSkor_akhir;
+            _tmpSkor_akhir = _cursor.getDouble(_cursorIndexOfSkorAkhir);
+            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap,_tmpSkor_akhir);
             _result.add(_item);
           }
           return _result;
@@ -321,6 +345,7 @@ public final class SiswaDao_Impl implements SiswaDao {
           final int _cursorIndexOfJamTerlambat = CursorUtil.getColumnIndexOrThrow(_cursor, "jam_terlambat");
           final int _cursorIndexOfPoinPelanggaran = CursorUtil.getColumnIndexOrThrow(_cursor, "poin_pelanggaran");
           final int _cursorIndexOfSkorSikap = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_sikap");
+          final int _cursorIndexOfSkorAkhir = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_akhir");
           final SiswaEntity _result;
           if (_cursor.moveToFirst()) {
             final int _tmpId;
@@ -371,7 +396,9 @@ public final class SiswaDao_Impl implements SiswaDao {
             _tmpPoin_pelanggaran = _cursor.getDouble(_cursorIndexOfPoinPelanggaran);
             final double _tmpSkor_sikap;
             _tmpSkor_sikap = _cursor.getDouble(_cursorIndexOfSkorSikap);
-            _result = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap);
+            final double _tmpSkor_akhir;
+            _tmpSkor_akhir = _cursor.getDouble(_cursorIndexOfSkorAkhir);
+            _result = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap,_tmpSkor_akhir);
           } else {
             _result = null;
           }
@@ -443,6 +470,7 @@ public final class SiswaDao_Impl implements SiswaDao {
           final int _cursorIndexOfJamTerlambat = CursorUtil.getColumnIndexOrThrow(_cursor, "jam_terlambat");
           final int _cursorIndexOfPoinPelanggaran = CursorUtil.getColumnIndexOrThrow(_cursor, "poin_pelanggaran");
           final int _cursorIndexOfSkorSikap = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_sikap");
+          final int _cursorIndexOfSkorAkhir = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_akhir");
           final List<SiswaEntity> _result = new ArrayList<SiswaEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final SiswaEntity _item;
@@ -494,7 +522,103 @@ public final class SiswaDao_Impl implements SiswaDao {
             _tmpPoin_pelanggaran = _cursor.getDouble(_cursorIndexOfPoinPelanggaran);
             final double _tmpSkor_sikap;
             _tmpSkor_sikap = _cursor.getDouble(_cursorIndexOfSkorSikap);
-            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap);
+            final double _tmpSkor_akhir;
+            _tmpSkor_akhir = _cursor.getDouble(_cursorIndexOfSkorAkhir);
+            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap,_tmpSkor_akhir);
+            _result.add(_item);
+          }
+          return _result;
+        } finally {
+          _cursor.close();
+        }
+      }
+
+      @Override
+      protected void finalize() {
+        _statement.release();
+      }
+    });
+  }
+
+  @Override
+  public LiveData<List<SiswaEntity>> getAllSiswaSortedLive() {
+    final String _sql = "SELECT * FROM siswa_table ORDER BY skor_akhir DESC";
+    final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
+    return __db.getInvalidationTracker().createLiveData(new String[] {"siswa_table"}, false, new Callable<List<SiswaEntity>>() {
+      @Override
+      @Nullable
+      public List<SiswaEntity> call() throws Exception {
+        final Cursor _cursor = DBUtil.query(__db, _statement, false, null);
+        try {
+          final int _cursorIndexOfId = CursorUtil.getColumnIndexOrThrow(_cursor, "id");
+          final int _cursorIndexOfNis = CursorUtil.getColumnIndexOrThrow(_cursor, "nis");
+          final int _cursorIndexOfNama = CursorUtil.getColumnIndexOrThrow(_cursor, "nama");
+          final int _cursorIndexOfJurusan = CursorUtil.getColumnIndexOrThrow(_cursor, "jurusan");
+          final int _cursorIndexOfTingkatKelas = CursorUtil.getColumnIndexOrThrow(_cursor, "tingkat_kelas");
+          final int _cursorIndexOfTahunAjaran = CursorUtil.getColumnIndexOrThrow(_cursor, "tahun_ajaran");
+          final int _cursorIndexOfNilaiRapor = CursorUtil.getColumnIndexOrThrow(_cursor, "nilai_rapor");
+          final int _cursorIndexOfNilaiTeori = CursorUtil.getColumnIndexOrThrow(_cursor, "nilai_teori");
+          final int _cursorIndexOfNilaiLab = CursorUtil.getColumnIndexOrThrow(_cursor, "nilai_lab");
+          final int _cursorIndexOfNilaiPkl = CursorUtil.getColumnIndexOrThrow(_cursor, "nilai_pkl");
+          final int _cursorIndexOfPersentaseHadir = CursorUtil.getColumnIndexOrThrow(_cursor, "persentase_hadir");
+          final int _cursorIndexOfJamTerlambat = CursorUtil.getColumnIndexOrThrow(_cursor, "jam_terlambat");
+          final int _cursorIndexOfPoinPelanggaran = CursorUtil.getColumnIndexOrThrow(_cursor, "poin_pelanggaran");
+          final int _cursorIndexOfSkorSikap = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_sikap");
+          final int _cursorIndexOfSkorAkhir = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_akhir");
+          final List<SiswaEntity> _result = new ArrayList<SiswaEntity>(_cursor.getCount());
+          while (_cursor.moveToNext()) {
+            final SiswaEntity _item;
+            final int _tmpId;
+            _tmpId = _cursor.getInt(_cursorIndexOfId);
+            final String _tmpNis;
+            if (_cursor.isNull(_cursorIndexOfNis)) {
+              _tmpNis = null;
+            } else {
+              _tmpNis = _cursor.getString(_cursorIndexOfNis);
+            }
+            final String _tmpNama;
+            if (_cursor.isNull(_cursorIndexOfNama)) {
+              _tmpNama = null;
+            } else {
+              _tmpNama = _cursor.getString(_cursorIndexOfNama);
+            }
+            final String _tmpJurusan;
+            if (_cursor.isNull(_cursorIndexOfJurusan)) {
+              _tmpJurusan = null;
+            } else {
+              _tmpJurusan = _cursor.getString(_cursorIndexOfJurusan);
+            }
+            final String _tmpTingkat_kelas;
+            if (_cursor.isNull(_cursorIndexOfTingkatKelas)) {
+              _tmpTingkat_kelas = null;
+            } else {
+              _tmpTingkat_kelas = _cursor.getString(_cursorIndexOfTingkatKelas);
+            }
+            final String _tmpTahun_ajaran;
+            if (_cursor.isNull(_cursorIndexOfTahunAjaran)) {
+              _tmpTahun_ajaran = null;
+            } else {
+              _tmpTahun_ajaran = _cursor.getString(_cursorIndexOfTahunAjaran);
+            }
+            final double _tmpNilai_rapor;
+            _tmpNilai_rapor = _cursor.getDouble(_cursorIndexOfNilaiRapor);
+            final double _tmpNilai_teori;
+            _tmpNilai_teori = _cursor.getDouble(_cursorIndexOfNilaiTeori);
+            final double _tmpNilai_lab;
+            _tmpNilai_lab = _cursor.getDouble(_cursorIndexOfNilaiLab);
+            final double _tmpNilai_pkl;
+            _tmpNilai_pkl = _cursor.getDouble(_cursorIndexOfNilaiPkl);
+            final double _tmpPersentase_hadir;
+            _tmpPersentase_hadir = _cursor.getDouble(_cursorIndexOfPersentaseHadir);
+            final double _tmpJam_terlambat;
+            _tmpJam_terlambat = _cursor.getDouble(_cursorIndexOfJamTerlambat);
+            final double _tmpPoin_pelanggaran;
+            _tmpPoin_pelanggaran = _cursor.getDouble(_cursorIndexOfPoinPelanggaran);
+            final double _tmpSkor_sikap;
+            _tmpSkor_sikap = _cursor.getDouble(_cursorIndexOfSkorSikap);
+            final double _tmpSkor_akhir;
+            _tmpSkor_akhir = _cursor.getDouble(_cursorIndexOfSkorAkhir);
+            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap,_tmpSkor_akhir);
             _result.add(_item);
           }
           return _result;
@@ -548,6 +672,7 @@ public final class SiswaDao_Impl implements SiswaDao {
           final int _cursorIndexOfJamTerlambat = CursorUtil.getColumnIndexOrThrow(_cursor, "jam_terlambat");
           final int _cursorIndexOfPoinPelanggaran = CursorUtil.getColumnIndexOrThrow(_cursor, "poin_pelanggaran");
           final int _cursorIndexOfSkorSikap = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_sikap");
+          final int _cursorIndexOfSkorAkhir = CursorUtil.getColumnIndexOrThrow(_cursor, "skor_akhir");
           final List<SiswaEntity> _result = new ArrayList<SiswaEntity>(_cursor.getCount());
           while (_cursor.moveToNext()) {
             final SiswaEntity _item;
@@ -599,7 +724,9 @@ public final class SiswaDao_Impl implements SiswaDao {
             _tmpPoin_pelanggaran = _cursor.getDouble(_cursorIndexOfPoinPelanggaran);
             final double _tmpSkor_sikap;
             _tmpSkor_sikap = _cursor.getDouble(_cursorIndexOfSkorSikap);
-            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap);
+            final double _tmpSkor_akhir;
+            _tmpSkor_akhir = _cursor.getDouble(_cursorIndexOfSkorAkhir);
+            _item = new SiswaEntity(_tmpId,_tmpNis,_tmpNama,_tmpJurusan,_tmpTingkat_kelas,_tmpTahun_ajaran,_tmpNilai_rapor,_tmpNilai_teori,_tmpNilai_lab,_tmpNilai_pkl,_tmpPersentase_hadir,_tmpJam_terlambat,_tmpPoin_pelanggaran,_tmpSkor_sikap,_tmpSkor_akhir);
             _result.add(_item);
           }
           return _result;

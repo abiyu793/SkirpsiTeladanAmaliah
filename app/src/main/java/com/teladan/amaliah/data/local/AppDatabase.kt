@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.teladan.amaliah.data.local.dao.AdminDao
 import com.teladan.amaliah.data.local.dao.MatrixDao
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [Admin::class, SiswaEntity::class, KriteriaMatrixEntity::class],
-    version = 4,
+    version = 6,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -37,6 +38,7 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "spk_database"
                 )
+                    .addMigrations(MIGRATION_4_5, MIGRATION_5_6)
                     .fallbackToDestructiveMigration()
                     .addCallback(DatabaseCallback())
                     .build()
@@ -60,6 +62,27 @@ abstract class AppDatabase : RoomDatabase() {
                         )
                     }
                 }
+            }
+
+            override fun onOpen(db: SupportSQLiteDatabase) {
+                super.onOpen(db)
+                // Migrate old jurusan names to new nomenclature automatically
+                db.execSQL("UPDATE siswa_table SET jurusan = 'LPFKK' WHERE jurusan = 'Farmasi'")
+                db.execSQL("UPDATE siswa_table SET jurusan = 'LPKPC' WHERE jurusan = 'Keperawatan'")
+                db.execSQL("UPDATE siswa_table SET jurusan = 'LPLM' WHERE jurusan = 'TLM'")
+            }
+        }
+
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE siswa_table ADD COLUMN skor_akhir REAL NOT NULL DEFAULT 0.0")
+            }
+        }
+
+        private val MIGRATION_5_6 = object : Migration(5, 6) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE siswa_table ADD COLUMN is_dirty INTEGER NOT NULL DEFAULT 0")
+                database.execSQL("ALTER TABLE siswa_table ADD COLUMN is_deleted INTEGER NOT NULL DEFAULT 0")
             }
         }
     }

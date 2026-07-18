@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itextpdf.kernel.colors.ColorConstants
@@ -29,6 +30,7 @@ import com.teladan.amaliah.data.local.entity.KriteriaMatrixEntity
 import com.teladan.amaliah.data.local.entity.SiswaEntity
 import com.teladan.amaliah.databinding.FragmentRankingBinding
 import com.teladan.amaliah.helper.CalculatorFAHP
+import com.teladan.amaliah.helper.PreferenceHelper
 import com.teladan.amaliah.ui.adapter.RankingAdapter
 import com.teladan.amaliah.ui.adapter.SiswaRanking
 import kotlinx.coroutines.Dispatchers
@@ -43,22 +45,25 @@ class RankingFragment : Fragment() {
     private var _binding: FragmentRankingBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var database: AppDatabase
+    private val viewModel: RankingViewModel by viewModels()
     private lateinit var rankingAdapter: RankingAdapter
-    private lateinit var calculator: CalculatorFAHP
-
-    // Penampung data agar saat dropdown diubah, kita tidak perlu query DB lagi
-    private var currentDataList: List<SiswaEntity> = emptyList()
+    
+    // Simpan list terbaru untuk export PDF
+    private var currentFilteredList: List<SiswaEntity> = emptyList()
+    private var isDialogShowing = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRankingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Pengecekan dialihkan ke dalam observer LiveData
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        database = AppDatabase.getDatabase(requireContext())
 
         rankingAdapter = RankingAdapter()
         binding.rvRanking.layoutManager = LinearLayoutManager(requireContext())
@@ -69,116 +74,87 @@ class RankingFragment : Fragment() {
             exportToPDF()
         }
 
-        // 1. SETUP DEFAULT SPINNER (GUNAKAN "Semua" BUKAN "Semua Jurusan/Kelas")
-        val jurusanList = arrayOf("Semua", "Farmasi", "Keperawatan", "TLM")
+        // 1. SETUP DEFAULT SPINNER
+        val jurusanList = arrayOf("Semua", "LPFKK", "LPKPC", "LPLM")
         val kelasList = arrayOf("Semua", "10", "11", "12")
 
         binding.spinnerFilterJurusan.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, jurusanList)
         binding.spinnerFilterKelas.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, kelasList)
 
-        // 2. LISTENER SPINNER
+        // 2. LISTENER SPINNER -> Kirim ke ViewModel
         val spinnerListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                processAndFilterData(currentDataList)
+                viewModel.setFilterJurusan(binding.spinnerFilterJurusan.selectedItem.toString())
+                viewModel.setFilterKelas(binding.spinnerFilterKelas.selectedItem.toString())
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {}
         }
         binding.spinnerFilterJurusan.onItemSelectedListener = spinnerListener
         binding.spinnerFilterKelas.onItemSelectedListener = spinnerListener
 
-        // 3. INISIALISASI MATRIX LALU PANTAU DATA
-        lifecycleScope.launch(Dispatchers.IO) {
-            val matrixData = database.matrixDao().getMatrix() ?: KriteriaMatrixEntity()
-            calculator = CalculatorFAHP(matrixData)
-
-            withContext(Dispatchers.Main) {
-                observeDataSiswa()
-            }
-        }
-    }
-
-    private fun observeDataSiswa() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val listSiswa = database.siswaDao().getAllSiswa()
-
-                // === LOG UNTUK DEBUG ===
-                Log.d("RankingFragment", "========== DATA DARI DATABASE ==========")
-                Log.d("RankingFragment", "Total data siswa: ${listSiswa.size}")
-
-                if (listSiswa.isNotEmpty()) {
-                    val pertama = listSiswa.first()
-                    Log.d("RankingFragment", "Contoh data pertama:")
-                    Log.d("RankingFragment", "  Nama : ${pertama.nama}")
-                    Log.d("RankingFragment", "  Jurusan : ${pertama.jurusan}")
-                    Log.d("RankingFragment", "  Kelas : ${pertama.tingkat_kelas}")
-                    Log.d("RankingFragment", "  rataAkademik : ${pertama.rataAkademik}")
-                    Log.d("RankingFragment", "  rataPraktik : ${pertama.rataPraktik}")
-                    Log.d("RankingFragment", "  rataHadir : ${pertama.rataHadir}")
-                    Log.d("RankingFragment", "  rataDisiplin : ${pertama.rataDisiplin}")
-                }
-                Log.d("RankingFragment", "========================================")
-
-                withContext(Dispatchers.Main) {
-                    currentDataList = listSiswa
-                    processAndFilterData(listSiswa)
-                }
-            } catch (e: Exception) {
-                Log.e("RankingFragment", "Error loading data: ${e.message}")
-                e.printStackTrace()
-            }
-        }
-    }
-
-    // FUNGSI UTAMA (FILTER -> HITUNG -> TAMPIL)
-    private fun processAndFilterData(listSiswa: List<SiswaEntity>) {
-        if (listSiswa.isEmpty()) {
-            showEmptyState(true, "Belum ada data siswa di database.")
-            rankingAdapter.setSiswaRanking(emptyList())
-            return
-        }
-
-        val filterJurusan = binding.spinnerFilterJurusan.selectedItem?.toString() ?: "Semua"
-        val filterKelas = binding.spinnerFilterKelas.selectedItem?.toString() ?: "Semua"
-
-        val filteredList = listSiswa.filter {
-            (filterJurusan == "Semua" || it.jurusan == filterJurusan) &&
-                    (filterKelas == "Semua" || it.tingkat_kelas == filterKelas)
-        }
-
-        if (filteredList.isEmpty()) {
-            showEmptyState(true, "Tidak ada data untuk filter yang dipilih.")
-            rankingAdapter.setSiswaRanking(emptyList())
-            return
-        }
-
-        showEmptyState(false, "")
-
-        lifecycleScope.launch(Dispatchers.Default) {
-            try {
-                val listRanking = filteredList.map { siswa ->
-                    val rataAkd = if (siswa.rataAkademik.isNaN()) 0.0 else siswa.rataAkademik
-                    val rataPrk = if (siswa.rataPraktik.isNaN()) 0.0 else siswa.rataPraktik
-                    val rataHdr = if (siswa.rataHadir.isNaN()) 0.0 else siswa.rataHadir
-                    val rataDsp = if (siswa.rataDisiplin.isNaN()) 0.0 else siswa.rataDisiplin
-
-                    val skorFAHP = calculator.calculateFinalScore(rataAkd, rataPrk, rataHdr, rataDsp)
-
-                    // Log untuk 5 data pertama
-                    if (filteredList.indexOf(siswa) < 5) {
-                        Log.d("RankingFragment", "Hitung: ${siswa.nama} -> Skor: $skorFAHP")
+        // 3. OBSERVE LIVEDATA DARI VIEWMODEL
+        viewModel.filteredRankingList.observe(viewLifecycleOwner) { listSiswa ->
+            currentFilteredList = listSiswa
+            if (listSiswa.isEmpty()) {
+                showEmptyState(true, "Tidak ada data untuk filter yang dipilih.")
+                rankingAdapter.setSiswaRanking(emptyList())
+            } else {
+                showEmptyState(false, "")
+                
+                // Cek apakah ada data siswa dengan status kotor (is_dirty == true)
+                val hasUncalculatedData = listSiswa.any { it.is_dirty }
+                
+                if (hasUncalculatedData) {
+                    binding.tvWarningUpdate.visibility = View.VISIBLE
+                    if (!isDialogShowing) {
+                        isDialogShowing = true
+                        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("Perbaruan Data Diperlukan")
+                            .setMessage("Terjadi perubahan data siswa. Ingin hitung ulang peringkat sekarang?")
+                            .setPositiveButton("Hitung Sekarang") { dialog, _ ->
+                                isDialogShowing = false
+                                viewModel.calculateAndRefreshRanking()
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Nanti Saja") { dialog, _ ->
+                                isDialogShowing = false
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
-
-                    SiswaRanking(siswa, if (skorFAHP.isNaN()) 0.0 else skorFAHP)
-                }.sortedByDescending { it.skorAkhir }
-
-                withContext(Dispatchers.Main) {
-                    Log.d("RankingFragment", "Final ranking: ${listRanking.size} data")
-                    rankingAdapter.setSiswaRanking(listRanking)
+                } else {
+                    binding.tvWarningUpdate.visibility = View.GONE
                 }
-            } catch (e: Exception) {
-                Log.e("RankingFragment", "Error perhitungan FAHP: ${e.localizedMessage}", e)
+                
+                // Konversi SiswaEntity menjadi SiswaRanking untuk Adapter
+                val listRanking = listSiswa.map { siswa ->
+                    SiswaRanking(siswa, siswa.skor_akhir)
+                }
+                rankingAdapter.setSiswaRanking(listRanking)
             }
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.rvRanking.visibility = View.GONE
+                binding.tvEmptyState.visibility = View.GONE
+            } else {
+                binding.progressBar.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+                // rvRanking & emptyState diurus oleh observer filteredRankingList
+            }
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { msg ->
+            msg?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // 4. TOMBOL REFRESH
+        binding.btnRefresh.setOnClickListener {
+            viewModel.calculateAndRefreshRanking()
         }
     }
 
@@ -199,56 +175,19 @@ class RankingFragment : Fragment() {
     private fun exportToPDF() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // Ambil matriks dari database
-                val matrixData = database.matrixDao().getMatrix() ?: KriteriaMatrixEntity()
-                val calculator = CalculatorFAHP(matrixData)
+                val listRanking = currentFilteredList.map { siswa ->
+                    Pair(siswa, siswa.skor_akhir)
+                }
 
-                // Ambil semua data siswa
-                val listSiswa = database.siswaDao().getAllSiswa()
-
-                // Log untuk debugging
-                Log.d("ExportPDF", "Total siswa di database: ${listSiswa.size}")
-
-                if (listSiswa.isEmpty()) {
+                if (listRanking.isEmpty()) {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(requireContext(), "Tidak ada data siswa untuk diekspor", Toast.LENGTH_SHORT).show()
                     }
                     return@launch
                 }
 
-                // Ambil filter yang dipilih
                 val filterJurusan = binding.spinnerFilterJurusan.selectedItem?.toString() ?: "Semua"
                 val filterKelas = binding.spinnerFilterKelas.selectedItem?.toString() ?: "Semua"
-
-                Log.d("ExportPDF", "Filter Jurusan: $filterJurusan, Filter Kelas: $filterKelas")
-
-                // Filter data (sama seperti di processAndFilterData)
-                val filteredList = listSiswa.filter {
-                    (filterJurusan == "Semua" || it.jurusan == filterJurusan) &&
-                            (filterKelas == "Semua" || it.tingkat_kelas == filterKelas)
-                }
-
-                Log.d("ExportPDF", "Data setelah filter: ${filteredList.size}")
-
-                if (filteredList.isEmpty()) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(requireContext(), "Tidak ada data untuk filter yang dipilih", Toast.LENGTH_SHORT).show()
-                    }
-                    return@launch
-                }
-
-                // Hitung ranking untuk data yang sudah difilter
-                val listRanking = filteredList.map { siswa ->
-                    val rataAkd = (siswa.nilai_rapor + siswa.nilai_teori) / 2.0
-                    val rataPrk = if (siswa.nilai_pkl > 0.0) (siswa.nilai_lab + siswa.nilai_pkl) / 2.0 else siswa.nilai_lab
-                    val rataHdr = (siswa.persentase_hadir + (100.0 - siswa.jam_terlambat)) / 2.0
-                    val rataDsp = (100.0 - siswa.poin_pelanggaran + siswa.skor_sikap) / 2.0
-
-                    val skor = calculator.calculateFinalScore(rataAkd, rataPrk, rataHdr, rataDsp)
-                    Pair(siswa, skor)
-                }.sortedByDescending { it.second }
-
-                Log.d("ExportPDF", "Data ranking: ${listRanking.size}")
 
                 // Buat file PDF
                 val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
@@ -288,7 +227,6 @@ class RankingFragment : Fragment() {
                 document.add(dateInfo)
 
                 // ==================== TABEL RANKING ====================
-                // Buat tabel dengan 14 kolom
                 val table = Table(UnitValue.createPercentArray(floatArrayOf(5f, 10f, 15f, 12f, 8f, 8f, 8f, 8f, 8f, 8f, 8f, 8f, 8f, 10f)))
                 table.setWidth(UnitValue.createPercentValue(100f))
 
@@ -365,7 +303,6 @@ class RankingFragment : Fragment() {
                     }
 
                     startActivity(Intent.createChooser(shareIntent, "Ekspor Ranking PDF"))
-
                     Toast.makeText(requireContext(), "PDF berhasil dibuat!\n${listRanking.size} data", Toast.LENGTH_LONG).show()
                 }
 

@@ -39,14 +39,14 @@ public final class AppDatabase_Impl extends AppDatabase {
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(4) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(5) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `admin_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `nama_lengkap` TEXT NOT NULL)");
-        db.execSQL("CREATE TABLE IF NOT EXISTS `siswa_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nis` TEXT NOT NULL, `nama` TEXT NOT NULL, `jurusan` TEXT NOT NULL, `tingkat_kelas` TEXT NOT NULL, `tahun_ajaran` TEXT NOT NULL, `nilai_rapor` REAL NOT NULL, `nilai_teori` REAL NOT NULL, `nilai_lab` REAL NOT NULL, `nilai_pkl` REAL NOT NULL, `persentase_hadir` REAL NOT NULL, `jam_terlambat` REAL NOT NULL, `poin_pelanggaran` REAL NOT NULL, `skor_sikap` REAL NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `siswa_table` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nis` TEXT NOT NULL, `nama` TEXT NOT NULL, `jurusan` TEXT NOT NULL, `tingkat_kelas` TEXT NOT NULL, `tahun_ajaran` TEXT NOT NULL, `nilai_rapor` REAL NOT NULL, `nilai_teori` REAL NOT NULL, `nilai_lab` REAL NOT NULL, `nilai_pkl` REAL NOT NULL, `persentase_hadir` REAL NOT NULL, `jam_terlambat` REAL NOT NULL, `poin_pelanggaran` REAL NOT NULL, `skor_sikap` REAL NOT NULL, `skor_akhir` REAL NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `kriteria_matrix` (`id` INTEGER NOT NULL, `praktik_vs_akademik` REAL NOT NULL, `disiplin_vs_akademik` REAL NOT NULL, `praktik_vs_hadir` REAL NOT NULL, `akademik_vs_hadir` REAL NOT NULL, `praktik_vs_disiplin` REAL NOT NULL, `hadir_vs_disiplin` REAL NOT NULL, PRIMARY KEY(`id`))");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '799f5a43100a7ae7c869a0d34c25087d')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a42f00f4d6daf5e44cc57b518b97d433')");
       }
 
       @Override
@@ -111,7 +111,7 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoAdminTable + "\n"
                   + " Found:\n" + _existingAdminTable);
         }
-        final HashMap<String, TableInfo.Column> _columnsSiswaTable = new HashMap<String, TableInfo.Column>(14);
+        final HashMap<String, TableInfo.Column> _columnsSiswaTable = new HashMap<String, TableInfo.Column>(15);
         _columnsSiswaTable.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSiswaTable.put("nis", new TableInfo.Column("nis", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSiswaTable.put("nama", new TableInfo.Column("nama", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -126,6 +126,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _columnsSiswaTable.put("jam_terlambat", new TableInfo.Column("jam_terlambat", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSiswaTable.put("poin_pelanggaran", new TableInfo.Column("poin_pelanggaran", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsSiswaTable.put("skor_sikap", new TableInfo.Column("skor_sikap", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSiswaTable.put("skor_akhir", new TableInfo.Column("skor_akhir", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysSiswaTable = new HashSet<TableInfo.ForeignKey>(0);
         final HashSet<TableInfo.Index> _indicesSiswaTable = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoSiswaTable = new TableInfo("siswa_table", _columnsSiswaTable, _foreignKeysSiswaTable, _indicesSiswaTable);
@@ -154,7 +155,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "799f5a43100a7ae7c869a0d34c25087d", "dbc90bede3d0afa899d03188c5c50fa3");
+    }, "a42f00f4d6daf5e44cc57b518b97d433", "7aea2a0660ecc6e37cfd5b1a76eec6e3");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;

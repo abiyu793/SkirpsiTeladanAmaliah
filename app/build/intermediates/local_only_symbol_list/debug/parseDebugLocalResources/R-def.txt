@@ -26,11 +26,13 @@ drawable ic_dark_mode
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_light_mode
+drawable ic_pdf
 id bottomNavigationView
 id btnDelete
 id btnExportPDF
 id btnLogin
 id btnLogout
+id btnRefresh
 id btnSettingKriteria
 id btnSimpan
 id btnSimpanHitung
@@ -64,6 +66,7 @@ id nav_graph
 id nav_ranking
 id nav_siswa
 id pieChart
+id progressBar
 id rvRanking
 id rvSiswa
 id spinnerFilterJurusan
@@ -87,6 +90,7 @@ id tvSkor
 id tvSubtitle
 id tvTitle
 id tvTotalSiswa
+id tvWarningUpdate
 id tvWelcome
 layout activity_add_siswa
 layout activity_login

@@ -3099,6 +3099,7 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_pdf
 drawable ic_search_black_24
 drawable indeterminate_static
 drawable m3_avd_hide_password
@@ -3283,6 +3284,7 @@ id btnDelete
 id btnExportPDF
 id btnLogin
 id btnLogout
+id btnRefresh
 id btnSettingKriteria
 id btnSimpan
 id btnSimpanHitung
@@ -3577,6 +3579,7 @@ id pin
 id position
 id postLayout
 id pressed
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -3726,6 +3729,7 @@ id tvSkor
 id tvSubtitle
 id tvTitle
 id tvTotalSiswa
+id tvWarningUpdate
 id tvWelcome
 id unchecked
 id uniform

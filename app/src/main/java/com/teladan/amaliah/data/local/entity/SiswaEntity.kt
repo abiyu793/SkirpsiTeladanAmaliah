@@ -27,7 +27,14 @@ data class SiswaEntity(
 
     // Sub-Kriteria Kedisiplinan
     val poin_pelanggaran: Double,
-    val skor_sikap: Double
+    val skor_sikap: Double,
+
+    // Skor Akhir FAHP
+    val skor_akhir: Double = 0.0,
+
+    // Status Cache & Soft Delete
+    val is_dirty: Boolean = false,
+    val is_deleted: Boolean = false
 ) {
     // LOGIKA PRA-PEMROSESAN (Otomatis dihitung saat diakses oleh RankingFragment)
     val rataAkademik: Double get() = (nilai_rapor + nilai_teori) / 2.0

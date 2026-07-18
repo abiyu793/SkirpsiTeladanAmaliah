@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -26,6 +27,12 @@ public final class FragmentRankingBinding implements ViewBinding {
   public final MaterialButton btnExportPDF;
 
   @NonNull
+  public final MaterialButton btnRefresh;
+
+  @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final RecyclerView rvRanking;
 
   @NonNull
@@ -37,16 +44,23 @@ public final class FragmentRankingBinding implements ViewBinding {
   @NonNull
   public final TextView tvEmptyState;
 
+  @NonNull
+  public final TextView tvWarningUpdate;
+
   private FragmentRankingBinding(@NonNull LinearLayout rootView,
-      @NonNull MaterialButton btnExportPDF, @NonNull RecyclerView rvRanking,
+      @NonNull MaterialButton btnExportPDF, @NonNull MaterialButton btnRefresh,
+      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvRanking,
       @NonNull Spinner spinnerFilterJurusan, @NonNull Spinner spinnerFilterKelas,
-      @NonNull TextView tvEmptyState) {
+      @NonNull TextView tvEmptyState, @NonNull TextView tvWarningUpdate) {
     this.rootView = rootView;
     this.btnExportPDF = btnExportPDF;
+    this.btnRefresh = btnRefresh;
+    this.progressBar = progressBar;
     this.rvRanking = rvRanking;
     this.spinnerFilterJurusan = spinnerFilterJurusan;
     this.spinnerFilterKelas = spinnerFilterKelas;
     this.tvEmptyState = tvEmptyState;
+    this.tvWarningUpdate = tvWarningUpdate;
   }
 
   @Override
@@ -82,6 +96,18 @@ public final class FragmentRankingBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnRefresh;
+      MaterialButton btnRefresh = ViewBindings.findChildViewById(rootView, id);
+      if (btnRefresh == null) {
+        break missingId;
+      }
+
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.rvRanking;
       RecyclerView rvRanking = ViewBindings.findChildViewById(rootView, id);
       if (rvRanking == null) {
@@ -106,8 +132,15 @@ public final class FragmentRankingBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentRankingBinding((LinearLayout) rootView, btnExportPDF, rvRanking,
-          spinnerFilterJurusan, spinnerFilterKelas, tvEmptyState);
+      id = R.id.tvWarningUpdate;
+      TextView tvWarningUpdate = ViewBindings.findChildViewById(rootView, id);
+      if (tvWarningUpdate == null) {
+        break missingId;
+      }
+
+      return new FragmentRankingBinding((LinearLayout) rootView, btnExportPDF, btnRefresh,
+          progressBar, rvRanking, spinnerFilterJurusan, spinnerFilterKelas, tvEmptyState,
+          tvWarningUpdate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

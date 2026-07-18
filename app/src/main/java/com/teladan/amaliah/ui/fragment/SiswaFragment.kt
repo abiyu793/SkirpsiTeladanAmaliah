@@ -15,11 +15,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.teladan.amaliah.data.local.AppDatabase
 import com.teladan.amaliah.data.local.entity.SiswaEntity
 import com.teladan.amaliah.databinding.FragmentSiswaBinding
-import com.teladan.amaliah.ui.adapter.SiswaAdapter
 import com.teladan.amaliah.ui.siswa.AddSiswaActivity
+import com.teladan.amaliah.helper.PreferenceHelper
+import com.teladan.amaliah.ui.adapter.SiswaAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.widget.Toast
 
 class SiswaFragment : Fragment() {
 
@@ -150,9 +152,9 @@ class SiswaFragment : Fragment() {
 
     private fun deleteSiswa(siswa: SiswaEntity) {
         lifecycleScope.launch(Dispatchers.IO) {
-            database.siswaDao().deleteSiswa(siswa.id)
+            database.siswaDao().softDeleteSiswa(siswa.id)
             withContext(Dispatchers.Main) {
-                android.widget.Toast.makeText(requireContext(), "Data ${siswa.nama} berhasil dihapus", android.widget.Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Siswa berhasil dihapus", Toast.LENGTH_SHORT).show()
                 loadDataSiswa() // Refresh data setelah dihapus
             }
         }

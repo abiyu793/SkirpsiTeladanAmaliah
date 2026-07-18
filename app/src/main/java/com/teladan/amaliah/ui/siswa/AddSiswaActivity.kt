@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.teladan.amaliah.data.local.AppDatabase
 import com.teladan.amaliah.data.local.entity.SiswaEntity
 import com.teladan.amaliah.databinding.ActivityAddSiswaBinding
+import com.teladan.amaliah.helper.PreferenceHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,6 +19,7 @@ class AddSiswaActivity : AppCompatActivity() {
     private lateinit var database: AppDatabase
     private var isEditMode = false
     private var editSiswaId = -1
+    private var cachedSkorAkhir = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,7 @@ class AddSiswaActivity : AppCompatActivity() {
         database = AppDatabase.getDatabase(this)
 
         // Setup Dropdown (Spinner) untuk Jurusan
-        val jurusanList = arrayOf("Farmasi", "Keperawatan", "TLM")
+        val jurusanList = arrayOf("LPFKK", "LPKPC", "LPLM")
         val jurusanAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, jurusanList)
         binding.spinnerJurusan.adapter = jurusanAdapter
 
@@ -55,13 +57,16 @@ class AddSiswaActivity : AppCompatActivity() {
             val data = database.siswaDao().getSiswaById(editSiswaId)
             withContext(Dispatchers.Main) {
                 data?.let {
+                    // Simpan cache skor lama
+                    cachedSkorAkhir = it.skor_akhir
+                    
                     // Isi form profil siswa
                     binding.etNis.setText(it.nis)
                     binding.etNama.setText(it.nama)
                     binding.etTahunAjaran.setText(it.tahun_ajaran)
 
                     // Set Spinner Jurusan
-                    val jurusanArray = arrayOf("Farmasi", "Keperawatan", "TLM")
+                    val jurusanArray = arrayOf("LPFKK", "LPKPC", "LPLM")
                     val jurusanPos = jurusanArray.indexOf(it.jurusan)
                     if (jurusanPos >= 0) binding.spinnerJurusan.setSelection(jurusanPos)
 
@@ -137,7 +142,9 @@ class AddSiswaActivity : AppCompatActivity() {
             persentase_hadir = hadir,
             jam_terlambat = terlambat,
             poin_pelanggaran = pelanggaran,
-            skor_sikap = sikap
+            skor_sikap = sikap,
+            skor_akhir = cachedSkorAkhir,
+            is_dirty = true
         )
 
         // === SIMPAN KE DATABASE ===

@@ -1,20 +1,20 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:44:9-52:20
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:50:9-58:20
 	android:grantUriPermissions
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:48:13-47
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:54:13-47
 	android:authorities
 		INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:46:13-64
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:52:13-64
 	android:exported
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:47:13-37
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:53:13-37
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:45:13-62
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:51:13-62
 manifest
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-56:12
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-62:12
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:2:1-62:12
 MERGED from [androidx.databinding:viewbinding:8.6.0] C:\Users\user\.gradle\caches\transforms-4\f4da30eb69afb8e61914cc1120d9d901\transformed\viewbinding-8.6.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-runtime-android:2.9.8] C:\Users\user\.gradle\caches\transforms-4\a112d2985cd923c15fb71bbcb17f0b8d\transformed\navigation-runtime-release\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-android:2.9.8] C:\Users\user\.gradle\caches\transforms-4\464f7b8fdcbd368171de9c16e97ec4a8\transformed\navigation-common-release\AndroidManifest.xml:17:1-22:12
@@ -99,8 +99,8 @@ ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:8:5-80
 	android:name
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:8:22-77
 application
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-54:19
-INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-54:19
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-60:19
+INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:10:5-60:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\user\.gradle\caches\transforms-4\2846f0ab4012a7fb37385f4c5b2e7578\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\user\.gradle\caches\transforms-4\2846f0ab4012a7fb37385f4c5b2e7578\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.room:room-runtime:2.6.1] C:\Users\user\.gradle\caches\transforms-4\24a4ee75d588339ddb4d9e0924ff0b14\transformed\room-runtime-2.6.1\AndroidManifest.xml:23:5-29:19
@@ -145,40 +145,48 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\user\.gradle\cache
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:18:9-52
 	android:dataExtractionRules
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:12:9-65
-activity#com.teladan.amaliah.ui.login.LoginActivity
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:23:9-30:20
+activity#com.teladan.amaliah.ui.splash.SplashScreenActivity
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:23:9-31:20
 	android:exported
 		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:25:13-36
+	android:theme
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:26:13-56
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:24:13-51
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:24:13-59
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:26:13-29:29
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:27:13-30:29
 action#android.intent.action.MAIN
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:27:17-69
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:28:17-69
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:27:25-66
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:28:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:28:17-77
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:28:27-74
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:29:27-74
+activity#com.teladan.amaliah.ui.login.LoginActivity
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:34:9-36:40
+	android:exported
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:36:13-37
+	android:name
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:35:13-51
 activity#com.teladan.amaliah.ui.MainActivity
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:33:9-35:40
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:39:9-41:40
 	android:exported
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:35:13-37
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:41:13-37
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:34:13-44
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:40:13-44
 activity#com.teladan.amaliah.ui.siswa.AddSiswaActivity
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:38:9-40:40
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:44:9-46:40
 	android:exported
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:40:13-37
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:46:13-37
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:39:13-54
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:45:13-54
 meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:49:13-51:54
+ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:55:13-57:54
 	android:resource
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:51:17-51
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:57:17-51
 	android:name
-		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:50:17-67
+		ADDED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml:56:17-67
 uses-sdk
 INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\skripsi\amaliah\app\src\main\AndroidManifest.xml

@@ -35,16 +35,22 @@
         android:testOnly="true"
         android:theme="@style/Theme.TeladanAmaliah" >
 
-        <!-- Login Activity (LAUNCHER) -->
+        <!-- Splash Screen Activity (LAUNCHER) -->
         <activity
-            android:name="com.teladan.amaliah.ui.login.LoginActivity"
-            android:exported="true" >
+            android:name="com.teladan.amaliah.ui.splash.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.TeladanAmaliah" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Login Activity -->
+        <activity
+            android:name="com.teladan.amaliah.ui.login.LoginActivity"
+            android:exported="false" />
 
         <!-- Main Activity (Dashboard) -->
         <activity

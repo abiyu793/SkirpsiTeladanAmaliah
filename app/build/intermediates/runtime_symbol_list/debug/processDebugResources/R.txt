@@ -3443,6 +3443,7 @@ int id invisible 0x7f080107
 int id inward 0x7f080108
 int id italic 0x7f080109
 int id item_touch_helper_previous_elevation 0x7f08010a
+int id ivSplashLogo 0x7f080243
 int id jumpToEnd 0x7f08010b
 int id jumpToStart 0x7f08010c
 int id labeled 0x7f08010d
@@ -3873,6 +3874,7 @@ int layout abc_tooltip 0x7f0b001b
 int layout activity_add_siswa 0x7f0b001c
 int layout activity_login 0x7f0b001d
 int layout activity_main 0x7f0b001e
+int layout activity_splash_screen 0x7f0b0075
 int layout bottom_sheet_setting_kriteria 0x7f0b001f
 int layout custom_dialog 0x7f0b0020
 int layout design_bottom_navigation_item 0x7f0b0021
@@ -3964,6 +3966,7 @@ int mipmap ic_launcher 0x7f0e0000
 int mipmap ic_launcher_round 0x7f0e0001
 int navigation nav_graph 0x7f0f0000
 int plurals mtrl_badge_content_description 0x7f100000
+int raw welcome_voice 0x7f150000
 int string abc_action_bar_home_description 0x7f110000
 int string abc_action_bar_up_description 0x7f110001
 int string abc_action_menu_overflow_description 0x7f110002

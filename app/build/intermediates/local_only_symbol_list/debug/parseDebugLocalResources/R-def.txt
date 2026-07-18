@@ -60,6 +60,7 @@ id etUsername
 id fabAddSiswa
 id flRankBadge
 id fragmentContainer
+id ivSplashLogo
 id nav_about
 id nav_dashboard
 id nav_graph
@@ -95,6 +96,7 @@ id tvWelcome
 layout activity_add_siswa
 layout activity_login
 layout activity_main
+layout activity_splash_screen
 layout bottom_sheet_setting_kriteria
 layout fragment_about
 layout fragment_dashboard
@@ -106,6 +108,7 @@ menu bottom_nav_menu
 mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
+raw welcome_voice
 string app_name
 string first_fragment_label
 string hello_blank_fragment

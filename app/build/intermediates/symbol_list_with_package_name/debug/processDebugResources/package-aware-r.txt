@@ -3444,6 +3444,7 @@ id invisible
 id inward
 id italic
 id item_touch_helper_previous_elevation
+id ivSplashLogo
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3874,6 +3875,7 @@ layout abc_tooltip
 layout activity_add_siswa
 layout activity_login
 layout activity_main
+layout activity_splash_screen
 layout bottom_sheet_setting_kriteria
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3965,6 +3967,7 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
+raw welcome_voice
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description

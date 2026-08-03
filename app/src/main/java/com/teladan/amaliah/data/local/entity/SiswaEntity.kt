@@ -38,7 +38,7 @@ data class SiswaEntity(
 ) {
     // LOGIKA PRA-PEMROSESAN (Otomatis dihitung saat diakses oleh RankingFragment)
     val rataAkademik: Double get() = (nilai_rapor + nilai_teori) / 2.0
-    val rataPraktik: Double get() = if (nilai_pkl > 0.0) (nilai_lab + nilai_pkl) / 2.0 else nilai_lab
+    val rataPraktik: Double get() = if (nilai_pkl == 0.0) nilai_lab else (nilai_lab + nilai_pkl) / 2.0
     val rataHadir: Double get() = (persentase_hadir + (100.0 - jam_terlambat)) / 2.0
-    val rataDisiplin: Double get() = (100.0 - poin_pelanggaran + skor_sikap) / 2.0
+    val rataDisiplin: Double get() = ((100.0 - poin_pelanggaran) + skor_sikap) / 2.0
 }

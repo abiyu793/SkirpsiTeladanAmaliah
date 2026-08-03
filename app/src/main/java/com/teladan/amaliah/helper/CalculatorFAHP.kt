@@ -1,32 +1,14 @@
 package com.teladan.amaliah.helper
 
 import com.teladan.amaliah.data.local.entity.KriteriaMatrixEntity
-import kotlin.math.max
-import kotlin.math.min
 
 /**
- * FULL FUZZY AHP (Metode Chang 1996) dengan Bobot Dinamis Crisp AHP
+ * Kalkulator F-AHP Dinamis yang menghitung bobot matriks secara dinamis, 
+ * namun melakukan evaluasi skor menggunakan rumus linear (presisi Excel).
  */
 class CalculatorFAHP(
     private val matrixData: KriteriaMatrixEntity
 ) {
-    // =======================================================
-    // 1. TRIANGULAR FUZZY NUMBER (TFN)
-    // =======================================================
-    data class TFN(
-        val l: Double,
-        val m: Double,
-        val u: Double
-    ) {
-        operator fun plus(other: TFN): TFN {
-            return TFN(l + other.l, m + other.m, u + other.u)
-        }
-
-        operator fun times(weight: Double): TFN {
-            return TFN(l * weight, m * weight, u * weight)
-        }
-    }
-
     private var cachedWeights: List<Double>? = null
 
     // Helper untuk matriks crisp
@@ -44,9 +26,6 @@ class CalculatorFAHP(
         )
     }
 
-    // =======================================================
-    // FASE MENGHITUNG BOBOT (CRISP AHP)
-    // =======================================================
     private fun getNormalizedWeights(): List<Double> {
         if (cachedWeights != null) return cachedWeights!!
 
@@ -79,9 +58,6 @@ class CalculatorFAHP(
         return cachedWeights!!
     }
 
-    // =======================================================
-    // UJI KONSISTENSI (CR)
-    // =======================================================
     fun checkConsistencyRatio(): Double {
         val crispMatrix = getCrispMatrix()
         val n = crispMatrix.size
@@ -106,22 +82,16 @@ class CalculatorFAHP(
         return ci / ri
     }
 
-    // =======================================================
-    // FASE EVALUASI SISWA
-    // =======================================================
-
-    private fun fuzzifyScore(score: Double): TFN {
-        val safeScore = score.coerceIn(0.0, 100.0)
-        val lower = max(0.0, safeScore - 1.0)
-        val upper = min(100.0, safeScore + 1.0)
-        return TFN(lower, safeScore, upper)
-    }
-
+    // 1. Rumus Rata-Rata Sub-Kriteria (Sesuai Excel)
     fun akademik(rapor: Double, teori: Double): Double = (rapor + teori) / 2.0
-    fun praktik(lab: Double, pkl: Double): Double = if (pkl > 0) (lab + pkl) / 2.0 else lab
-    fun hadir(hadir: Double, terlambat: Double): Double = (hadir + (100 - terlambat)) / 2.0
-    fun disiplin(pelanggaran: Double, sikap: Double): Double = ((100 - pelanggaran) + sikap) / 2.0
+    
+    fun praktik(lab: Double, pkl: Double): Double = if (pkl == 0.0) lab else (lab + pkl) / 2.0
+    
+    fun hadir(hadir: Double, terlambat: Double): Double = (hadir + (100.0 - terlambat)) / 2.0
+    
+    fun disiplin(pelanggaran: Double, sikap: Double): Double = ((100.0 - pelanggaran) + sikap) / 2.0
 
+    // 3. Rumus Total Skor Akhir
     fun calculateFinalScore(
         nilaiAkademik: Double,
         nilaiPraktik: Double,
@@ -129,26 +99,13 @@ class CalculatorFAHP(
         nilaiDisiplin: Double
     ): Double {
         val weights = getNormalizedWeights()
+        val totalScore = (nilaiAkademik * weights[0]) + 
+                         (nilaiPraktik * weights[1]) + 
+                         (nilaiHadir * weights[2]) + 
+                         (nilaiDisiplin * weights[3])
 
-        val fuzzyAkademik = fuzzifyScore(nilaiAkademik)
-        val fuzzyPraktik = fuzzifyScore(nilaiPraktik)
-        val fuzzyHadir = fuzzifyScore(nilaiHadir)
-        val fuzzyDisiplin = fuzzifyScore(nilaiDisiplin)
-
-        val scoreAkademik = fuzzyAkademik * weights[0]
-        val scorePraktik = fuzzyPraktik * weights[1]
-        val scoreHadir = fuzzyHadir * weights[2]
-        val scoreDisiplin = fuzzyDisiplin * weights[3]
-
-        val finalFuzzy = scoreAkademik + scorePraktik + scoreHadir + scoreDisiplin
-
-        val finalScore = (finalFuzzy.l + finalFuzzy.m + finalFuzzy.u) / 3.0
-
-        if (finalScore.isNaN() || finalScore.isInfinite()) {
-            return 0.0
-        }
-
-        return String.format("%.2f", finalScore).replace(',', '.').toDouble()
+        // Mengembalikan presisi penuh tanpa dibulatkan
+        return if (totalScore.isNaN() || totalScore.isInfinite()) 0.0 else totalScore
     }
 
     fun getWeights(): List<Double> = getNormalizedWeights()

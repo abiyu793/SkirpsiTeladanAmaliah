@@ -26,7 +26,7 @@ class RankingAdapter : RecyclerView.Adapter<RankingAdapter.RankingViewHolder>() 
             // Akses data dari SiswaEntity
             binding.tvNama.text = item.data.nama
             binding.tvJurusan.text = "NIS: ${item.data.nis} • ${item.data.jurusan} • Kelas ${item.data.tingkat_kelas}"
-            binding.tvSkor.text = String.format("%.2f", item.skorAkhir)
+            binding.tvSkor.text = String.format(java.util.Locale.US, "%.2f", item.skorAkhir)
         }
     }
 
